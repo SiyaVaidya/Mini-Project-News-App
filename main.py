@@ -1,11 +1,11 @@
 import requests
-from datetime import date
+from datetime import date,timedelta
 
 query=input("What type of News are you interested in today ?\n")
 api=""  # Add your NewsAPI key here 
-today = date.today().strftime("%Y-%m-%d")
+yesterday = (date.today() - timedelta(days=1)).strftime("%Y-%m-%d")
 
-url=f"https://newsapi.org/v2/everything?q={query}&from={today}&sortBy=publishedAt&apiKey={api}"
+url=f"https://newsapi.org/v2/everything?q={query}&from={yesterday}&sortBy=publishedAt&apiKey={api}"
 
 r= requests.get(url)
 data = r.json()
